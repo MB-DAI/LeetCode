@@ -1,0 +1,19 @@
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        
+        int i = 0;
+        for (int j = 0; j < nums.size(); j++)
+        {
+            vector<int>::iterator it = nums.begin();
+            if (nums[i] == 0)
+            {
+                it = it + i;
+                nums.erase(it);
+                nums.push_back(0);
+            }
+            else
+                i++;
+        }
+    }
+};
