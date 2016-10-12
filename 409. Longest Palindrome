@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int longestPalindrome(string s) {
+        int oddletter = 0;
+        int maxlen = 0;
+        for (char c = 'A'; c <= 'z'; ++c)
+        {
+            int count = 0;
+            for (int it = 0; it < s.length(); ++it)
+                if (s[it] == c)
+                    count++;
+
+            if (count %2 != 0)
+            {
+                maxlen += count - 1;
+                oddletter = 1;
+            }
+            else 
+                maxlen += count;
+        }
+        
+        return maxlen + oddletter;
+    }
+};
