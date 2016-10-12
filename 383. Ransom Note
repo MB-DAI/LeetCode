@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        
+        for (int i = 0; i <ransomNote.length(); ++i)
+        {
+            size_t pos = magazine.find_first_of(ransomNote[i]);
+            if (pos == string::npos)
+                return false;
+            else
+                magazine.erase(magazine.begin() + pos);
+        }
+        return true;
+    }
+};
