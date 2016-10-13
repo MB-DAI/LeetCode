@@ -1,0 +1,10 @@
+class Solution {
+public:
+    int titleToNumber(string s) {
+        int num = 0;
+        for (int i = 0; i < s.length(); ++i)
+            num += pow(26, s.length() - i - 1)*(s[i] - 'A' + 1);
+        return num;
+    }
+};
+///26 scale system, recall how we calculate in decimal system.
