@@ -1,0 +1,9 @@
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        for (int pos = 0; pos < s.length(); ++pos)
+            if (s.find(s[pos]) == s.rfind(s[pos]))
+                return pos;
+        return -1;
+    }
+};
