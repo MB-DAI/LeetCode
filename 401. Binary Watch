@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<string> readBinaryWatch(int num) {
+        map<int, vector<string>> NumTimeMap;
+        for (int h = 0; h < 12; ++h)
+        {
+            int n1 = popcount(h);
+            for (int m = 0; m < 60; ++m)
+            {
+                int n2 = popcount(m);
+                string Time = to_string(h);
+                Time += ":";
+                if (m < 10)
+                    Time += "0";
+                Time += to_string(m);
+                NumTimeMap[n1 + n2].push_back(Time); 
+            }
+        }
+        return NumTimeMap[num];
+    }
+    
+    size_t popcount(size_t n){
+        bitset<sizeof(size_t) * CHAR_BIT> b(n);
+        return b.count();
+    }
+};
