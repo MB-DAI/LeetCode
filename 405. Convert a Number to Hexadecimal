@@ -1,0 +1,38 @@
+class Solution {
+public:
+    string toHex(int num) {
+        if (num == 0)
+            return "0";
+        string result;
+        int res;
+        res = num > 0? num : abs(num) - 1;
+        int digit = 0;
+        int loop = 0;
+        while (res != 0 || loop < 8)
+        {
+            digit = res%16;
+            if (num > 0)
+            {
+                result.insert(0, Dec2Hex(digit));
+                loop = 8;
+            }
+                
+            else
+            {
+                result.insert(0, Dec2Hex(15 - digit));
+                loop++;
+            }
+            res = (res - digit)/16;
+        }
+        return result;
+    }
+    
+    string Dec2Hex(int n){
+        string s;
+        if (n < 10)
+            s = to_string(n);
+        else
+            s = 'a' + n - 10;
+        return s;
+    }
+};
