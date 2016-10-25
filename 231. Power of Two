@@ -1,0 +1,6 @@
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        return n>0? !(int(pow(3,31)) % n):0;
+    }
+};
