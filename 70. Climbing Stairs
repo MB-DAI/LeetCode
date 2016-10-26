@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int climbStairs(int n) {
+        if (n < 3)
+            return n;
+        int result = 0;
+        int last2val = 1;
+        int lastval = 2;
+        int i = 3;
+        while (i <= n)
+        {
+            result = last2val + lastval;
+            last2val = lastval;
+            lastval = result;
+            i++;
+        }
+        return result;
+    }
+};
+/// Fibonacci series, recursion seems not efficient, need to store temp value
+/*
+class Solution {
+public:
+    int climbStairs(int n) {
+        if (n < 3)
+            return n;
+        int result = climbStairs(n - 1) + climbStairs(n - 2);    
+        return result;
+    }
+};
