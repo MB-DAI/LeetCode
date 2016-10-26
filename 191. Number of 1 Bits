@@ -1,0 +1,7 @@
+class Solution {
+public:
+    int hammingWeight(uint32_t n) {
+        bitset<sizeof(uint32_t) * CHAR_BIT> b(n);
+        return b.count();
+    }
+};
