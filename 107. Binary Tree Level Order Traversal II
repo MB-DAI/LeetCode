@@ -1,0 +1,82 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<vector<int>> levelOrderBottom(TreeNode* root) {
+        
+        vector<vector<int>> result;
+        if (root == NULL)
+            return result;
+            
+        TreeNode *node;
+        vector<TreeNode*> level, nextlevel;
+        level.push_back(root);
+        int i = 0, levelsize = level.size(), nextsize = 0;
+        vector<int> value;
+        while (i < levelsize){
+                node = level[i];
+                value.push_back(node->val);
+                if (node->left != NULL)
+                {
+                    nextlevel.push_back(node->left);
+                    nextsize++;
+                }
+                if (node->right != NULL)    
+                {
+                    nextlevel.push_back(node->right);
+                    nextsize++;
+                }
+                i++;
+                if (i == levelsize)
+                {
+                    result.insert(result.begin(), value);  
+                    value.clear();
+                    levelsize = nextsize;
+                    nextsize = 0;
+                    i = 0;
+                    level = nextlevel;
+                    nextlevel.clear();
+                }
+            }
+     return result;
+    }
+};
+/* 
+class Solution {
+public:
+    vector<vector<int>> levelOrderBottom(TreeNode* root) {
+        
+        vector<vector<int>> result;
+        if (root == NULL)
+            return result;
+        
+        TreeNode *node;
+        vector<TreeNode*> level, nextlevel;
+        level.push_back(root);
+        vector<int> value;
+        while (!level.empty()){            
+            int i = 0;
+            while (i < level.size()){
+                node = level[i];
+                value.push_back(node->val);
+                if (node->left != NULL)
+                    nextlevel.push_back(node->left);
+                if (node->right != NULL)    
+                    nextlevel.push_back(node->right);
+                i++;
+            }
+            result.insert(result.begin(), value);    
+            level = nextlevel;
+	        nextlevel.clear();
+	        value.clear();
+        }
+     return result;
+    }
+};
