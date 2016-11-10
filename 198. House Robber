@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        
+        if (nums.empty())
+            return 0;
+        if(nums.size() == 1)
+            return nums[0];
+        
+        int max1(0), max2(0);
+        
+        for(int i = 0; i < nums.size(); ++i)
+        {
+            if (i%2)
+                max2 = (max2 + nums[i] > max1)? max2 + nums[i]:max1;
+            else
+                max1 = (max1 + nums[i] > max2)? max1 + nums[i]:max2;
+        }
+        return (max1 > max2) ? max1:max2;
+    }
+};
+
+
+/* algorithm below is of high complexity 
+int subval1 = nums[0];
+        int subval2 = nums[1];
+        
+        if (nums.size() > 2)
+        {
+            vector<int> subvec1(nums.begin() + 2, nums.end());
+            subval1 += rob(subvec1);
+        }
+            
+        if (nums.size() > 3)
+        {
+            vector<int> subvec2(nums.begin() + 3, nums.end());
+            subval2 += rob(subvec2);
+        }
+        
+        return (subval1 > subval2)? subval1 : subval2;
