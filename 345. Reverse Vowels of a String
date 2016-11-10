@@ -1,0 +1,46 @@
+class Solution {
+public:
+    string reverseVowels(string s) {
+        if(s.empty())
+            return s;
+        string vowels("aeiouAEIOU");
+        size_t i(0), j(s.length()-1);
+        
+        char tmp;
+        while (i < j)    
+        {
+            if (vowels.find(s[i]) == string::npos)
+                i++;
+            else if (vowels.find(s[j]) == string::npos)
+                j--;
+            else
+            {
+                tmp = s[i];
+                s[i] = s[j];
+                s[j] = tmp;
+                i++;
+                j--;
+            }
+        }
+        return s;
+    }
+};
+/* lower efficient algorithm
+        string vowels("aeiouAEIOU");
+        string vowstr;
+        for(int i = 0; i < s.length(); i++)    
+        {
+            if (vowels.find(s[i]) != string::npos)
+                vowstr.insert(vowstr.begin(), s[i]);
+        }
+        int j = 0;
+        for(int i = 0; i < s.length(); i++)    
+        {
+            if (vowels.find(s[i]) != string::npos)
+            {
+                s[i] = vowstr[j];
+                j++;
+            }
+        }
+        return s;
+        
